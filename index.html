@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,13 +10,93 @@
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
             background-color: #1a224a;
             display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+            flex-direction: column;
+            min-height: 100vh;
             margin: 0;
             color: #333;
         }
-        
+
+        .header {
+            background-color: #0f1539;
+            color: white;
+            padding: 16px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 90%;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+            font-size: 18px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            opacity: 0.9;
+            transition: opacity 0.3s;
+        }
+
+        .nav-links a:hover {
+            opacity: 1;
+        }
+
+        .main-content {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 32px 0;
+        }
+
+        .footer {
+            background-color: #0f1539;
+            color: white;
+            text-align: center;
+            padding: 16px;
+            font-size: 14px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 90%;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            opacity: 0.9;
+            transition: opacity 0.3s;
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+        }
+
         .container {
             background-color: white;
             border-radius: 12px;
@@ -24,21 +105,21 @@
             padding: 32px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
-        
+
         h2 {
             margin-top: 0;
             margin-bottom: 24px;
             font-weight: 600;
             font-size: 18px;
         }
-        
+
         .tabs {
             display: flex;
             background-color: #f5f5f7;
             border-radius: 8px;
             margin-bottom: 32px;
         }
-        
+
         .tab {
             flex: 1;
             text-align: center;
@@ -53,21 +134,21 @@
             justify-content: center;
             gap: 6px;
         }
-        
+
         .tab.active {
             background-color: white;
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
         }
-        
+
         .section {
             margin-bottom: 24px;
         }
-        
+
         .slider-container {
             margin-top: 16px;
             margin-bottom: 16px;
         }
-        
+
         .slider {
             -webkit-appearance: none;
             width: 100%;
@@ -76,7 +157,7 @@
             outline: none;
             margin-bottom: 12px;
         }
-        
+
         .slider::-webkit-slider-thumb {
             -webkit-appearance: none;
             appearance: none;
@@ -87,27 +168,27 @@
             border-radius: 50%;
             cursor: pointer;
         }
-        
+
         .toggle-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 16px;
         }
-        
+
         .toggle {
             position: relative;
             display: inline-block;
             width: 46px;
             height: 24px;
         }
-        
+
         .toggle input {
             opacity: 0;
             width: 0;
             height: 0;
         }
-        
+
         .slider-toggle {
             position: absolute;
             cursor: pointer;
@@ -119,7 +200,7 @@
             transition: .4s;
             border-radius: 24px;
         }
-        
+
         .slider-toggle:before {
             position: absolute;
             content: "";
@@ -131,15 +212,15 @@
             transition: .4s;
             border-radius: 50%;
         }
-        
-        input:checked + .slider-toggle {
+
+        input:checked+.slider-toggle {
             background-color: #3366ff;
         }
-        
-        input:checked + .slider-toggle:before {
+
+        input:checked+.slider-toggle:before {
             transform: translateX(22px);
         }
-        
+
         .password-display {
             border: 1px solid #e1e1e1;
             border-radius: 8px;
@@ -151,12 +232,12 @@
             word-break: break-all;
             min-height: 24px;
         }
-        
+
         .button-container {
             display: flex;
             gap: 16px;
         }
-        
+
         .button {
             flex: 1;
             background-color: #3366ff;
@@ -168,27 +249,27 @@
             cursor: pointer;
             transition: background-color 0.3s;
         }
-        
+
         .button:hover {
             background-color: #2952cc;
         }
-        
+
         .button.secondary {
             background-color: white;
             border: 1px solid #3366ff;
             color: #3366ff;
         }
-        
+
         .button.secondary:hover {
             background-color: #f0f5ff;
         }
-        
+
         .length-display {
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-        
+
         .length-input {
             width: 50px;
             text-align: center;
@@ -197,7 +278,7 @@
             border-radius: 6px;
             font-size: 16px;
         }
-        
+
         hr {
             border: none;
             border-top: 1px solid #e1e1e1;
@@ -205,77 +286,114 @@
         }
     </style>
 </head>
+
 <body>
-    <div class="container">
-        <h2>Choose password type</h2>
-        
-        <div class="tabs">
-            <div class="tab active" id="random-tab">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
-                    <polyline points="7.5 4.21 12 6.81 16.5 4.21"></polyline>
-                    <polyline points="7.5 19.79 7.5 14.6 3 12"></polyline>
-                    <polyline points="21 12 16.5 14.6 16.5 19.79"></polyline>
-                    <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
-                    <line x1="12" y1="22.08" x2="12" y2="12"></line>
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
                 </svg>
-                Random
+                Password Generator
             </div>
-            <div class="tab" id="memorable-tab">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M12 2c-4.42 0-8 3.58-8 8 0 1.65.55 3.15 1.47 4.35L12 21l6.53-6.66C19.45 13.15 20 11.65 20 10c0-4.42-3.58-8-8-8z"></path>
-                </svg>
-                Memorable
+            <nav class="nav-links">
+                <a href="#">Home</a>
+                <a href="#">About</a>
+                <a href="#">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <h2>Choose password type</h2>
+
+            <div class="tabs">
+                <div class="tab active" id="random-tab">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path
+                            d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z">
+                        </path>
+                        <polyline points="7.5 4.21 12 6.81 16.5 4.21"></polyline>
+                        <polyline points="7.5 19.79 7.5 14.6 3 12"></polyline>
+                        <polyline points="21 12 16.5 14.6 16.5 19.79"></polyline>
+                        <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                        <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                    </svg>
+                    Random
+                </div>
+                <div class="tab" id="memorable-tab">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path
+                            d="M12 2c-4.42 0-8 3.58-8 8 0 1.65.55 3.15 1.47 4.35L12 21l6.53-6.66C19.45 13.15 20 11.65 20 10c0-4.42-3.58-8-8-8z">
+                        </path>
+                    </svg>
+                    Memorable
+                </div>
+                <div class="tab" id="pin-tab">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path
+                            d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-2V3a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1v3H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2z">
+                        </path>
+                        <path d="M12 10v4"></path>
+                        <circle cx="12" cy="16" r="1"></circle>
+                    </svg>
+                    PIN
+                </div>
             </div>
-            <div class="tab" id="pin-tab">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-2V3a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1v3H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2z"></path>
-                    <path d="M12 10v4"></path>
-                    <circle cx="12" cy="16" r="1"></circle>
-                </svg>
-                PIN
+
+            <h2>Customize your new password</h2>
+
+            <div class="section">
+                <div class="length-display">
+                    <label>Characters</label>
+                    <input type="number" id="length-input" class="length-input" value="20" min="4" max="64">
+                </div>
+                <div class="slider-container">
+                    <input type="range" min="4" max="64" value="20" class="slider" id="length-slider">
+                </div>
+            </div>
+
+            <div class="toggle-container">
+                <span>Numbers</span>
+                <label class="toggle">
+                    <input type="checkbox" id="numbers-toggle" checked>
+                    <span class="slider-toggle"></span>
+                </label>
+            </div>
+
+            <div class="toggle-container">
+                <span>Symbols</span>
+                <label class="toggle">
+                    <input type="checkbox" id="symbols-toggle" checked>
+                    <span class="slider-toggle"></span>
+                </label>
+            </div>
+
+            <hr>
+
+            <h2>Generated password</h2>
+
+            <div class="password-display" id="password-display">4H2UWNkyPsMXKggJ37vN</div>
+
+            <div class="button-container">
+                <button class="button" id="copy-button">Copy password</button>
+                <button class="button secondary" id="refresh-button">Refresh password</button>
             </div>
         </div>
-        
-        <h2>Customize your new password</h2>
-        
-        <div class="section">
-            <div class="length-display">
-                <label>Characters</label>
-                <input type="number" id="length-input" class="length-input" value="20" min="4" max="64">
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Support</a>
             </div>
-            <div class="slider-container">
-                <input type="range" min="4" max="64" value="20" class="slider" id="length-slider">
-            </div>
+            <p>© 2023 Password Generator. All rights reserved.</p>
         </div>
-        
-        <div class="toggle-container">
-            <span>Numbers</span>
-            <label class="toggle">
-                <input type="checkbox" id="numbers-toggle" checked>
-                <span class="slider-toggle"></span>
-            </label>
-        </div>
-        
-        <div class="toggle-container">
-            <span>Symbols</span>
-            <label class="toggle">
-                <input type="checkbox" id="symbols-toggle">
-                <span class="slider-toggle"></span>
-            </label>
-        </div>
-        
-        <hr>
-        
-        <h2>Generated password</h2>
-        
-        <div class="password-display" id="password-display">4H2UWNkyPsMXKggJ37vN</div>
-        
-        <div class="button-container">
-            <button class="button" id="copy-button">Copy password</button>
-            <button class="button secondary" id="refresh-button">Refresh password</button>
-        </div>
-    </div>
+    </footer>
 
     <script>
         // Password generation function
@@ -284,20 +402,20 @@
             const uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
             const numbers = '0123456789';
             const symbols = '!@#$%^&*()_+-=[]{}|;:,.<>?';
-            
+
             let chars = lowercase + uppercase;
             if (useNumbers) chars += numbers;
             if (useSymbols) chars += symbols;
-            
+
             let password = '';
             for (let i = 0; i < length; i++) {
                 const randomIndex = Math.floor(Math.random() * chars.length);
                 password += chars[randomIndex];
             }
-            
+
             return password;
         }
-        
+
         // Generate PIN
         function generatePIN(length) {
             const numbers = '0123456789';
@@ -308,43 +426,43 @@
             }
             return pin;
         }
-        
+
         // Generate memorable password
         function generateMemorablePassword(length) {
             const words = [
-                'apple', 'beach', 'coffee', 'dog', 'eagle', 'friend', 'guitar', 'house', 
-                'island', 'journey', 'king', 'lemon', 'mountain', 'night', 'ocean', 'pizza', 
-                'queen', 'river', 'summer', 'tiger', 'umbrella', 'violin', 'winter', 'xylophone', 
+                'apple', 'beach', 'coffee', 'dog', 'eagle', 'friend', 'guitar', 'house',
+                'island', 'journey', 'king', 'lemon', 'mountain', 'night', 'ocean', 'pizza',
+                'queen', 'river', 'summer', 'tiger', 'umbrella', 'violin', 'winter', 'xylophone',
                 'yellow', 'zebra', 'book', 'cloud', 'dream', 'earth', 'fire', 'garden'
             ];
-            
+
             let password = '';
             while (password.length < length) {
                 const randomWord = words[Math.floor(Math.random() * words.length)];
                 const capitalizedWord = randomWord.charAt(0).toUpperCase() + randomWord.slice(1);
-                
+
                 if (password.length === 0) {
                     password = capitalizedWord;
                 } else {
                     password += capitalizedWord;
                 }
-                
+
                 // Add a number if numbers are enabled
                 if (document.getElementById('numbers-toggle').checked && password.length < length) {
                     password += Math.floor(Math.random() * 10);
                 }
-                
+
                 // Add a symbol if symbols are enabled
                 if (document.getElementById('symbols-toggle').checked && password.length < length) {
                     const symbols = '!@#$%^&*';
                     password += symbols[Math.floor(Math.random() * symbols.length)];
                 }
             }
-            
+
             // Trim if the password is too long
             return password.slice(0, length);
         }
-        
+
         // DOM elements
         const lengthSlider = document.getElementById('length-slider');
         const lengthInput = document.getElementById('length-input');
@@ -356,18 +474,18 @@
         const randomTab = document.getElementById('random-tab');
         const memorableTab = document.getElementById('memorable-tab');
         const pinTab = document.getElementById('pin-tab');
-        
+
         let currentMode = 'random';
-        
+
         // Update password on load
         updatePassword();
-        
+
         // Event listeners
         lengthSlider.addEventListener('input', () => {
             lengthInput.value = lengthSlider.value;
             updatePassword();
         });
-        
+
         lengthInput.addEventListener('input', () => {
             let value = parseInt(lengthInput.value);
             if (value < 4) value = 4;
@@ -376,11 +494,11 @@
             lengthSlider.value = value;
             updatePassword();
         });
-        
+
         numbersToggle.addEventListener('change', updatePassword);
         symbolsToggle.addEventListener('change', updatePassword);
         refreshButton.addEventListener('click', updatePassword);
-        
+
         copyButton.addEventListener('click', () => {
             const textarea = document.createElement('textarea');
             textarea.value = passwordDisplay.textContent;
@@ -388,34 +506,34 @@
             textarea.select();
             document.execCommand('copy');
             document.body.removeChild(textarea);
-            
+
             copyButton.textContent = 'Copied!';
             setTimeout(() => {
                 copyButton.textContent = 'Copy password';
             }, 2000);
         });
-        
+
         // Tab switching
         randomTab.addEventListener('click', () => {
             setActiveTab('random');
         });
-        
+
         memorableTab.addEventListener('click', () => {
             setActiveTab('memorable');
         });
-        
+
         pinTab.addEventListener('click', () => {
             setActiveTab('pin');
         });
-        
+
         function setActiveTab(mode) {
             currentMode = mode;
-            
+
             // Reset active states
             randomTab.classList.remove('active');
             memorableTab.classList.remove('active');
             pinTab.classList.remove('active');
-            
+
             // Set active tab
             if (mode === 'random') {
                 randomTab.classList.add('active');
@@ -430,17 +548,17 @@
                 numbersToggle.parentElement.parentElement.style.display = 'none';
                 symbolsToggle.parentElement.parentElement.style.display = 'none';
             }
-            
+
             updatePassword();
         }
-        
+
         function updatePassword() {
             const length = parseInt(lengthSlider.value);
             const useNumbers = numbersToggle.checked;
             const useSymbols = symbolsToggle.checked;
-            
+
             let generatedPassword = '';
-            
+
             if (currentMode === 'random') {
                 generatedPassword = generatePassword(length, useNumbers, useSymbols);
             } else if (currentMode === 'memorable') {
@@ -448,9 +566,10 @@
             } else if (currentMode === 'pin') {
                 generatedPassword = generatePIN(length);
             }
-            
+
             passwordDisplay.textContent = generatedPassword;
         }
     </script>
 </body>
+
 </html>
