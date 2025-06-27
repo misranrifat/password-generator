@@ -27,16 +27,10 @@ Try the password generator online: [https://password-generator-ch1.pages.dev/](h
 
 ## Installation
 
-1. Clone the repository:
-   ```bash
-   git clone <repository-url>
-   cd password-generator
-   ```
-
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
+Install dependencies:
+```bash
+npm install
+```
 
 ## Usage
 
