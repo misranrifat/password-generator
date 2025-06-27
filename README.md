@@ -2,6 +2,10 @@
 
 A secure and user-friendly password generator web application that provides multiple password generation modes to meet different security needs.
 
+## Live Demo
+
+Try the password generator online: [https://password-generator-ch1.pages.dev/](https://password-generator-ch1.pages.dev/)
+
 ## Features
 
 - **Multiple Generation Modes**:
