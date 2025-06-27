@@ -1,0 +1,10 @@
+name = "password-generator"
+compatibility_date = "2023-12-01"
+
+[env.production]
+account_id = ""
+compatibility_date = "2023-12-01"
+
+[[env.production.routes]]
+pattern = "*"
+zone_name = "" 

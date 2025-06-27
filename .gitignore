@@ -153,9 +153,11 @@ Thumbs.db
 *.temp
 
 # Build directories
-dist/
 build/
 public/
+
+# Cloudflare
+.wrangler/
 
 # Package lock files (choose one)
 package-lock.json
