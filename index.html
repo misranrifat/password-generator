@@ -6,21 +6,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Password Generator</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-            background-color: #1a224a;
+            font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+            background: #000000;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
-            min-height: 100vh;
-            margin: 0;
-            color: #333;
+            color: #00ff00;
+            line-height: 1.4;
+            font-weight: 400;
+            font-size: 14px;
         }
 
         .header {
-            background-color: #0f1539;
-            color: white;
-            padding: 16px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            background: #000000;
+            border-bottom: 1px solid #00ff00;
+            padding: 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
 
         .header-content {
@@ -29,15 +39,23 @@
             align-items: center;
             max-width: 1200px;
             margin: 0 auto;
-            width: 90%;
+            padding: 8px 16px;
         }
 
         .logo {
             display: flex;
             align-items: center;
-            gap: 10px;
-            font-weight: 600;
-            font-size: 18px;
+            gap: 8px;
+            font-weight: 700;
+            font-size: 16px;
+            color: #00ff00;
+            text-decoration: none;
+            text-transform: uppercase;
+        }
+
+        .logo::before {
+            content: "[$]";
+            color: #00ff00;
         }
 
         .nav-links {
@@ -46,15 +64,22 @@
         }
 
         .nav-links a {
-            color: white;
+            color: #00ff00;
             text-decoration: none;
             font-size: 14px;
-            opacity: 0.9;
-            transition: opacity 0.3s;
+            font-weight: 400;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+            text-transform: uppercase;
         }
 
         .nav-links a:hover {
             opacity: 1;
+        }
+
+        .nav-links a::before {
+            content: "./";
+            opacity: 0.6;
         }
 
         .main-content {
@@ -62,125 +87,236 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 32px 0;
-        }
-
-        .footer {
-            background-color: #0f1539;
-            color: white;
-            text-align: center;
-            padding: 16px;
-            font-size: 14px;
-        }
-
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            width: 90%;
-        }
-
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 24px;
-            margin-bottom: 12px;
-        }
-
-        .footer-links a {
-            color: white;
-            text-decoration: none;
-            opacity: 0.9;
-            transition: opacity 0.3s;
-        }
-
-        .footer-links a:hover {
-            opacity: 1;
+            padding: 40px 16px;
         }
 
         .container {
-            background-color: white;
-            border-radius: 12px;
-            width: 90%;
-            max-width: 500px;
-            padding: 32px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            background: #000000;
+            border: 2px solid #00ff00;
+            width: 100%;
+            max-width: 600px;
+            padding: 24px;
+            position: relative;
         }
 
-        h2 {
-            margin-top: 0;
-            margin-bottom: 24px;
-            font-weight: 600;
+        .container::before {
+            content: "┌─────────────────────────────────────────────────────────────────────────────┐";
+            position: absolute;
+            top: -1px;
+            left: -1px;
+            right: -1px;
+            color: #00ff00;
+            font-size: 12px;
+            background: #000000;
+            padding: 0 8px;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+
+        .container::after {
+            content: "└─────────────────────────────────────────────────────────────────────────────┘";
+            position: absolute;
+            bottom: -1px;
+            left: -1px;
+            right: -1px;
+            color: #00ff00;
+            font-size: 12px;
+            background: #000000;
+            padding: 0 8px;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+
+        .terminal-header {
+            color: #00ff00;
             font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 4px;
+            text-transform: uppercase;
+        }
+
+        .terminal-header::before {
+            content: "root@security:~$ ";
+            color: #00ff00;
+        }
+
+        .subtitle {
+            color: #00aa00;
+            margin-bottom: 24px;
+            font-size: 12px;
+        }
+
+        .subtitle::before {
+            content: "# ";
+            color: #00aa00;
         }
 
         .tabs {
             display: flex;
-            background-color: #f5f5f7;
-            border-radius: 8px;
-            margin-bottom: 32px;
+            margin-bottom: 24px;
+            border: 1px solid #00ff00;
         }
 
         .tab {
             flex: 1;
             text-align: center;
-            padding: 12px;
+            padding: 8px 12px;
             cursor: pointer;
-            border-radius: 8px;
             font-weight: 500;
-            font-size: 14px;
-            transition: background-color 0.3s;
+            font-size: 12px;
+            transition: all 0.3s ease;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 6px;
+            color: #00aa00;
+            border: none;
+            background: transparent;
+            text-transform: uppercase;
+            border-right: 1px solid #00ff00;
+        }
+
+        .tab:last-child {
+            border-right: none;
         }
 
         .tab.active {
-            background-color: white;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            background: #00ff00;
+            color: #000000;
+        }
+
+        .tab::before {
+            content: "[";
+            color: inherit;
+        }
+
+        .tab::after {
+            content: "]";
+            color: inherit;
         }
 
         .section {
-            margin-bottom: 24px;
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            color: #00ff00;
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+        }
+
+        .section-title::before {
+            content: ">> ";
+            color: #00ff00;
+        }
+
+        .length-display {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .length-display label {
+            color: #00ff00;
+            font-size: 14px;
+            font-weight: 500;
+            text-transform: uppercase;
+        }
+
+        .length-display label::before {
+            content: "LENGTH: ";
+            color: #00aa00;
+        }
+
+        .length-input {
+            width: 60px;
+            text-align: center;
+            padding: 4px 8px;
+            border: 1px solid #00ff00;
+            background: #000000;
+            color: #00ff00;
+            font-family: inherit;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .length-input:focus {
+            outline: none;
+            border-color: #00ff00;
+            box-shadow: 0 0 5px #00ff00;
         }
 
         .slider-container {
-            margin-top: 16px;
-            margin-bottom: 16px;
+            margin-bottom: 12px;
         }
 
         .slider {
             -webkit-appearance: none;
             width: 100%;
             height: 4px;
-            background: #3366ff;
+            background: #003300;
             outline: none;
-            margin-bottom: 12px;
+            cursor: pointer;
+            border: 1px solid #00ff00;
         }
 
         .slider::-webkit-slider-thumb {
             -webkit-appearance: none;
             appearance: none;
-            width: 18px;
-            height: 18px;
-            background: white;
-            border: 2px solid #3366ff;
-            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            background: #00ff00;
             cursor: pointer;
+            border: 1px solid #00ff00;
+        }
+
+        .slider::-moz-range-thumb {
+            width: 16px;
+            height: 16px;
+            background: #00ff00;
+            cursor: pointer;
+            border: 1px solid #00ff00;
         }
 
         .toggle-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 16px;
+            margin-bottom: 12px;
+            padding: 8px 0;
+            border-bottom: 1px dotted #00aa00;
+        }
+
+        .toggle-container:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .toggle-container span {
+            color: #00ff00;
+            font-size: 14px;
+            font-weight: 500;
+            text-transform: uppercase;
+        }
+
+        .toggle-container span::before {
+            content: "[";
+            color: #00aa00;
+        }
+
+        .toggle-container span::after {
+            content: "]";
+            color: #00aa00;
         }
 
         .toggle {
             position: relative;
             display: inline-block;
-            width: 46px;
-            height: 24px;
+            width: 40px;
+            height: 20px;
         }
 
         .toggle input {
@@ -196,93 +332,261 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background-color: #ccc;
-            transition: .4s;
-            border-radius: 24px;
+            background-color: #003300;
+            transition: .3s ease;
+            border: 1px solid #00ff00;
         }
 
         .slider-toggle:before {
             position: absolute;
             content: "";
-            height: 18px;
-            width: 18px;
-            left: 3px;
-            bottom: 3px;
-            background-color: white;
-            transition: .4s;
-            border-radius: 50%;
+            height: 16px;
+            width: 16px;
+            left: 1px;
+            bottom: 1px;
+            background-color: #00ff00;
+            transition: .3s ease;
         }
 
         input:checked+.slider-toggle {
-            background-color: #3366ff;
+            background-color: #00ff00;
         }
 
         input:checked+.slider-toggle:before {
-            transform: translateX(22px);
+            transform: translateX(18px);
+            background-color: #000000;
         }
 
         .password-display {
-            border: 1px solid #e1e1e1;
-            border-radius: 8px;
+            border: 2px solid #00ff00;
             padding: 16px;
             text-align: center;
             font-size: 16px;
-            font-family: monospace;
+            font-family: inherit;
             margin-bottom: 24px;
             word-break: break-all;
-            min-height: 24px;
+            min-height: 50px;
+            background: #001100;
+            color: #00ff00;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .password-display::before {
+            content: "OUTPUT: ";
+            position: absolute;
+            top: -12px;
+            left: 8px;
+            background: #000000;
+            padding: 0 4px;
+            color: #00aa00;
+            font-size: 10px;
+            text-transform: uppercase;
         }
 
         .button-container {
             display: flex;
-            gap: 16px;
+            gap: 12px;
         }
 
         .button {
             flex: 1;
-            background-color: #3366ff;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            padding: 14px;
-            font-size: 16px;
+            background: #000000;
+            color: #00ff00;
+            border: 2px solid #00ff00;
+            padding: 12px 16px;
+            font-size: 14px;
+            font-weight: 700;
             cursor: pointer;
-            transition: background-color 0.3s;
+            transition: all 0.3s ease;
+            font-family: inherit;
+            text-transform: uppercase;
         }
 
         .button:hover {
-            background-color: #2952cc;
+            background: #00ff00;
+            color: #000000;
+        }
+
+        .button:active {
+            background: #00aa00;
         }
 
         .button.secondary {
-            background-color: white;
-            border: 1px solid #3366ff;
-            color: #3366ff;
+            background: transparent;
+            border: 2px solid #00aa00;
+            color: #00aa00;
         }
 
         .button.secondary:hover {
-            background-color: #f0f5ff;
+            background: #00aa00;
+            color: #000000;
         }
 
-        .length-display {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .length-input {
-            width: 50px;
+        .footer {
+            background: #000000;
+            border-top: 1px solid #00ff00;
+            padding: 16px;
             text-align: center;
-            padding: 8px;
-            border: 1px solid #e1e1e1;
-            border-radius: 6px;
-            font-size: 16px;
         }
 
-        hr {
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-bottom: 8px;
+        }
+
+        .footer-links a {
+            color: #00aa00;
+            text-decoration: none;
+            font-size: 12px;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+            text-transform: uppercase;
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+        }
+
+        .footer-links a::before {
+            content: "./";
+            opacity: 0.6;
+        }
+
+        .footer p {
+            font-size: 10px;
+            color: #006600;
+        }
+
+        .footer p::before {
+            content: "# ";
+            color: #006600;
+        }
+
+        .divider {
+            height: 1px;
+            background: #00ff00;
+            margin: 20px 0;
             border: none;
-            border-top: 1px solid #e1e1e1;
-            margin: 24px 0;
+            position: relative;
+        }
+
+        .divider::before {
+            content: "────────────────────────────────────────────────────────────────────────────";
+            position: absolute;
+            top: -8px;
+            left: 0;
+            color: #00aa00;
+            font-size: 10px;
+        }
+
+        /* Blinking cursor effect */
+        .blink {
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+
+            0%,
+            50% {
+                opacity: 1;
+            }
+
+            51%,
+            100% {
+                opacity: 0;
+            }
+        }
+
+        /* Terminal-style scrollbar */
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #000000;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #00ff00;
+            border: 1px solid #000000;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #00aa00;
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                padding: 8px 12px;
+            }
+
+            .nav-links {
+                gap: 16px;
+            }
+
+            .nav-links a {
+                font-size: 12px;
+            }
+
+            .main-content {
+                padding: 24px 12px;
+            }
+
+            .container {
+                padding: 16px;
+            }
+
+            .terminal-header {
+                font-size: 16px;
+            }
+
+            .button-container {
+                flex-direction: column;
+            }
+
+            .footer-links {
+                flex-wrap: wrap;
+                gap: 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-links {
+                display: none;
+            }
+
+            .container {
+                padding: 12px;
+            }
+
+            .tabs {
+                flex-direction: column;
+            }
+
+            .tab {
+                border-right: none;
+                border-bottom: 1px solid #00ff00;
+            }
+
+            .tab:last-child {
+                border-bottom: none;
+            }
+
+            .container::before,
+            .container::after {
+                display: none;
+            }
         }
     </style>
 </head>
@@ -290,13 +594,9 @@
 <body>
     <header class="header">
         <div class="header-content">
-            <div class="logo">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-                    <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-                </svg>
+            <a href="#" class="logo">
                 Password Generator
-            </div>
+            </a>
             <nav class="nav-links">
                 <a href="#">Home</a>
                 <a href="#">About</a>
@@ -307,47 +607,18 @@
 
     <main class="main-content">
         <div class="container">
-            <h2>Choose password type</h2>
+            <div class="terminal-header">Password Generator</div>
+            <p class="subtitle">Generate secure passwords and PINs</p>
 
             <div class="tabs">
-                <div class="tab active" id="random-tab">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path
-                            d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z">
-                        </path>
-                        <polyline points="7.5 4.21 12 6.81 16.5 4.21"></polyline>
-                        <polyline points="7.5 19.79 7.5 14.6 3 12"></polyline>
-                        <polyline points="21 12 16.5 14.6 16.5 19.79"></polyline>
-                        <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
-                        <line x1="12" y1="22.08" x2="12" y2="12"></line>
-                    </svg>
-                    Random
-                </div>
-                <div class="tab" id="memorable-tab">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path
-                            d="M12 2c-4.42 0-8 3.58-8 8 0 1.65.55 3.15 1.47 4.35L12 21l6.53-6.66C19.45 13.15 20 11.65 20 10c0-4.42-3.58-8-8-8z">
-                        </path>
-                    </svg>
-                    Memorable
-                </div>
-                <div class="tab" id="pin-tab">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path
-                            d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-2V3a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1v3H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2z">
-                        </path>
-                        <path d="M12 10v4"></path>
-                        <circle cx="12" cy="16" r="1"></circle>
-                    </svg>
-                    PIN
-                </div>
+                <button class="tab active" id="random-tab">Random</button>
+                <button class="tab" id="memorable-tab">Memorable</button>
+                <button class="tab" id="pin-tab">PIN</button>
             </div>
-
-            <h2>Customize your new password</h2>
 
             <div class="section">
                 <div class="length-display">
-                    <label>Characters</label>
+                    <label></label>
                     <input type="number" id="length-input" class="length-input" value="20" min="4" max="64">
                 </div>
                 <div class="slider-container">
@@ -355,31 +626,31 @@
                 </div>
             </div>
 
-            <div class="toggle-container">
-                <span>Numbers</span>
-                <label class="toggle">
-                    <input type="checkbox" id="numbers-toggle" checked>
-                    <span class="slider-toggle"></span>
-                </label>
+            <div class="section">
+                <div class="toggle-container">
+                    <span>Numbers</span>
+                    <label class="toggle">
+                        <input type="checkbox" id="numbers-toggle" checked>
+                        <span class="slider-toggle"></span>
+                    </label>
+                </div>
+
+                <div class="toggle-container">
+                    <span>Symbols</span>
+                    <label class="toggle">
+                        <input type="checkbox" id="symbols-toggle" checked>
+                        <span class="slider-toggle"></span>
+                    </label>
+                </div>
             </div>
 
-            <div class="toggle-container">
-                <span>Symbols</span>
-                <label class="toggle">
-                    <input type="checkbox" id="symbols-toggle" checked>
-                    <span class="slider-toggle"></span>
-                </label>
-            </div>
+            <hr class="divider">
 
-            <hr>
-
-            <h2>Generated password</h2>
-
-            <div class="password-display" id="password-display">4H2UWNkyPsMXKggJ37vN</div>
+            <div class="password-display" id="password-display">4H2UWNkyPsMXKggJ37vN<span class="blink">_</span></div>
 
             <div class="button-container">
-                <button class="button" id="copy-button">Copy password</button>
-                <button class="button secondary" id="refresh-button">Refresh password</button>
+                <button class="button" id="copy-button">Copy</button>
+                <button class="button secondary" id="refresh-button">Generate</button>
             </div>
         </div>
     </main>
@@ -387,11 +658,11 @@
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-links">
-                <a href="#">Privacy Policy</a>
-                <a href="#">Terms of Service</a>
+                <a href="#">Privacy</a>
+                <a href="#">Terms</a>
                 <a href="#">Support</a>
             </div>
-            <p>© 2023 Password Generator. All rights reserved.</p>
+            <p>© 2024 Password Generator Terminal Interface</p>
         </div>
     </footer>
 
@@ -499,18 +770,29 @@
         symbolsToggle.addEventListener('change', updatePassword);
         refreshButton.addEventListener('click', updatePassword);
 
-        copyButton.addEventListener('click', () => {
-            const textarea = document.createElement('textarea');
-            textarea.value = passwordDisplay.textContent;
-            document.body.appendChild(textarea);
-            textarea.select();
-            document.execCommand('copy');
-            document.body.removeChild(textarea);
+        copyButton.addEventListener('click', async () => {
+            try {
+                const passwordText = passwordDisplay.textContent.replace('_', ''); // Remove cursor
+                await navigator.clipboard.writeText(passwordText);
+                copyButton.textContent = 'COPIED!';
+                setTimeout(() => {
+                    copyButton.textContent = 'COPY';
+                }, 2000);
+            } catch (err) {
+                // Fallback for older browsers
+                const passwordText = passwordDisplay.textContent.replace('_', ''); // Remove cursor
+                const textarea = document.createElement('textarea');
+                textarea.value = passwordText;
+                document.body.appendChild(textarea);
+                textarea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textarea);
 
-            copyButton.textContent = 'Copied!';
-            setTimeout(() => {
-                copyButton.textContent = 'Copy password';
-            }, 2000);
+                copyButton.textContent = 'COPIED!';
+                setTimeout(() => {
+                    copyButton.textContent = 'COPY';
+                }, 2000);
+            }
         });
 
         // Tab switching
@@ -567,7 +849,7 @@
                 generatedPassword = generatePIN(length);
             }
 
-            passwordDisplay.textContent = generatedPassword;
+            passwordDisplay.innerHTML = generatedPassword + '<span class="blink">_</span>';
         }
     </script>
 </body>
